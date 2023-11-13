@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>American Sign Language Prediction</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Add Bootstrap JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/static/style1.css">
+</head>
+<body>
+    <header class="header">
+        <div class="topnav">
+            <a href="/templates/predict.html" style="color: aliceblue;">Predict</a>
+            <a href="/templates/home.html" style="color: aliceblue;">Home</a>
+        </div>
+        <div class="header-content">
+            <h1>American Sign Language Prediction</h1>
+        </div>
+    </header>
+    <div class="content">
+        <div class="form-container">
+            <form id="image-form" method="post" action="/predict" enctype="multipart/form-data">
+                <input type="file" id="file_upload" name="image" accept="image/*"><br><br>
+                <input type="submit" value="Submit">
+            </form><br>
+            <img id="image-preview" style="border-radius: 5px;"/>
+        </div><br><br>
+        <h1 style="color: black;">The hand sign represents:</h1><br>
+        <div id="prediction-result">
+            {% if image %}
+            <img src="{{ image_path }}" alt="Uploaded Image">
+        {% endif %}
+            {% if pred %}
+                <p>Predicted Sign: {{ pred }}</p>
+            {% endif %}
+        </div>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+</html>
